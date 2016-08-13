@@ -129,9 +129,10 @@
   <ItemGroup>
     <Compile Include="CompiledScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sandboxing\SandboxSecurityParameters.cs" />
     <Compile Include="ScriptGlobals.cs" />
     <Compile Include="ScriptingEngine.cs" />
-    <Compile Include="ScriptSandbox.cs" />
+    <Compile Include="Sandboxing\ScriptSandbox.cs" />
     <Compile Include="ScriptVariable.cs" />
     <Compile Include="SharpScriptOptions.cs" />
   </ItemGroup>

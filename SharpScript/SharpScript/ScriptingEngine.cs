@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.Scripting;
 using System.Collections.Immutable;
 using System.Dynamic;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace SharpScript
@@ -24,6 +25,20 @@ namespace SharpScript
             _roslynScriptOptions = ScriptOptions.Default
                 .AddReferences(EngineOptions.ReferencedAssemblies)
                 .AddImports(EngineOptions.Imports);
+
+            if (EngineOptions.PassEngineReference)
+            {
+                Globals.HostEngine = this;
+            }
+        }
+
+        /// <summary>
+        /// Adds the assembly to the referenced assemblies available to the script.
+        /// </summary>
+        /// <param name="asm"></param>
+        public void AddAssemblyReference(Assembly asm)
+        {
+            _roslynScriptOptions.AddReferences(asm);
         }
 
         /// <summary>

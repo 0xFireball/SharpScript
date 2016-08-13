@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpScript.Sandboxing;
+using System;
 
 namespace SharpScript.Demo
 {
@@ -22,6 +23,12 @@ namespace SharpScript.Demo
             engine.Globals.Y = 2;
             var variableAddResult = await engine.EvaluateAsync<int>("Globals.X + Globals.Y");
             TestUtil.WriteResult(TestUtil.Match(engine.Globals.X + engine.Globals.Y, variableAddResult));
+
+            Console.WriteLine("Completed Scripting Engine tests");
+            var scriptSandbox = new ScriptSandbox();
+            var sandboxedAddResult = scriptSandbox.SandboxedEngine.EvaluateAsync<int>("1 + 2");
+
+            Console.Write("Testing Sandboxing...");
 
             Console.WriteLine("All tests completed");
             Console.ReadLine();

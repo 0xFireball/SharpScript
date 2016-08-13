@@ -22,10 +22,10 @@ namespace SharpScript.Demo
             TestUtil.WriteResult(TestUtil.Match(3, addResult));
 
             Console.Write("Testing variables...");
-            engine.Globals.X = 1;
-            engine.Globals.Y = 2;
-            var variableAddResult = await engine.EvaluateAsync<int>("X + Y");
-            TestUtil.WriteResult(TestUtil.Match(engine.Globals.X + engine.Globals.Y, variableAddResult));
+            engine.Globals["X"] = 1;
+            engine.Globals["Y"] = 2;
+            var variableAddResult = await engine.EvaluateAsync<int>("Globals[\"X\"] + Globals[\"Y\"]");
+            TestUtil.WriteResult(TestUtil.Match(3, variableAddResult));
 
             Console.WriteLine("All tests completed");
             Console.ReadLine();

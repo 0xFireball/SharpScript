@@ -1,9 +1,8 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using System.Collections.Immutable;
 using System.Dynamic;
 using System.Threading.Tasks;
-using System;
-using System.Collections.Immutable;
 
 namespace SharpScript
 {
@@ -21,7 +20,7 @@ namespace SharpScript
         private async void InitializeEngine(SharpScriptOptions scriptOptions)
         {
             EngineOptions = scriptOptions;
-            EngineState = await CSharpScript.RunAsync<object>("");
+            EngineState = await CSharpScript.RunAsync<object>("", _roslynScriptOptions, _roslynScriptGlobals);
             _roslynScriptOptions = ScriptOptions.Default
                 .AddReferences(EngineOptions.ReferencedAssemblies)
                 .AddImports(EngineOptions.Imports);
@@ -47,7 +46,7 @@ namespace SharpScript
         /// <returns></returns>
         public async Task<T> EvaluateAsync<T>(string expression)
         {
-            return await CSharpScript.EvaluateAsync<T>(expression, _roslynScriptOptions, Globals, typeof(ExpandoObject));
+            return await CSharpScript.EvaluateAsync<T>(expression, _roslynScriptOptions, _roslynScriptGlobals);
         }
 
         public CompiledScript CompileScript(string scriptCode)
@@ -72,11 +71,12 @@ namespace SharpScript
             return await CSharpScript.EvaluateAsync<T>(expression);
         }
         */
-        public dynamic Globals { get; set; } = new ExpandoObject();
+        public GlobalVariableCollection Globals { get; set; } = new GlobalVariableCollection();
         public SharpScriptOptions EngineOptions { get; set; }
         public ScriptState EngineState { get; set; }
         public ImmutableArray<Microsoft.CodeAnalysis.Scripting.ScriptVariable> Variables => EngineState.Variables;
 
         private ScriptOptions _roslynScriptOptions;
+        private ScriptGlobals _roslynScriptGlobals => new ScriptGlobals() { Globals = Globals };
     }
 }

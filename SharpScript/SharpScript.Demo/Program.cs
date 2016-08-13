@@ -18,11 +18,11 @@ namespace SharpScript.Demo
             var engine = new ScriptingEngine();
 
             Console.Write("Basic Arithmetic...");
-            var addResult = await engine.EvaluateAsync<int>("1 + 2");
+            var addResult = await engine.EvaluateStatelessAsync<int>("1 + 2");
             TestUtil.WriteResult(TestUtil.Match(3, addResult));
 
             Console.Write("DnsHostname...");
-            var hostnameResult = await engine.EvaluateAsync<int>("1 + 2");
+            var hostnameResult = await engine.EvaluateStatelessAsync<int>("1 + 2");
         }
     }
 }

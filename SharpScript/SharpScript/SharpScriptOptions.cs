@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpScript
 {
@@ -15,6 +11,7 @@ namespace SharpScript
             typeof(Microsoft.CSharp.CSharpCodeProvider).Assembly, // System
             Assembly.GetAssembly(typeof(System.Dynamic.DynamicObject)),  // System.Core
         };
+
         public List<string> Imports { get; set; } = new List<string>();
     }
 }

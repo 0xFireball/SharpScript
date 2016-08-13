@@ -9,7 +9,7 @@ namespace SharpScript
             typeof(object).Assembly, // mscorlib
             typeof(Microsoft.CSharp.RuntimeBinder.RuntimeBinderException).Assembly, // Microsoft.CSharp
             typeof(Microsoft.CSharp.CSharpCodeProvider).Assembly, // System
-            Assembly.GetAssembly(typeof(System.Dynamic.DynamicObject)),  // System.Core
+            typeof(System.Linq.Enumerable).Assembly,  // System.Core
         };
 
         public List<string> Imports { get; set; } = new List<string>();

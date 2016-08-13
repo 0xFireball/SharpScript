@@ -2,6 +2,6 @@
 {
     public class ScriptGlobals
     {
-        public GlobalVariableCollection Globals { get; set; }
+        public dynamic Globals { get; set; }
     }
 }

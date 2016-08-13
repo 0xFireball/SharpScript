@@ -21,8 +21,14 @@ namespace SharpScript.Demo
             var addResult = await engine.EvaluateAsync<int>("1 + 2");
             TestUtil.WriteResult(TestUtil.Match(3, addResult));
 
-            Console.Write("DnsHostname...");
-            var hostnameResult = await engine.EvaluateAsync<int>("1 + 2");
+            Console.Write("Testing variables...");
+            engine.Globals.X = 1;
+            engine.Globals.Y = 2;
+            var variableAddResult = await engine.EvaluateAsync<int>("X + Y");
+            TestUtil.WriteResult(TestUtil.Match(engine.Globals.X + engine.Globals.Y, variableAddResult));
+
+            Console.WriteLine("All tests completed");
+            Console.ReadLine();
         }
     }
 }

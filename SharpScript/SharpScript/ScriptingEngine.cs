@@ -47,7 +47,7 @@ namespace SharpScript
         /// <returns></returns>
         public async Task<T> EvaluateAsync<T>(string expression)
         {
-            return await CSharpScript.EvaluateAsync<T>(expression, _roslynScriptOptions, Globals);
+            return await CSharpScript.EvaluateAsync<T>(expression, _roslynScriptOptions, Globals, typeof(ExpandoObject));
         }
 
         public CompiledScript CompileScript(string scriptCode)
@@ -72,7 +72,7 @@ namespace SharpScript
             return await CSharpScript.EvaluateAsync<T>(expression);
         }
         */
-        public ExpandoObject Globals { get; set; } = new ExpandoObject();
+        public dynamic Globals { get; set; } = new ExpandoObject();
         public SharpScriptOptions EngineOptions { get; set; }
         public ScriptState EngineState { get; set; }
         public ImmutableArray<Microsoft.CodeAnalysis.Scripting.ScriptVariable> Variables => EngineState.Variables;

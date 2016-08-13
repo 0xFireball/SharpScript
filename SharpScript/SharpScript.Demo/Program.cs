@@ -24,23 +24,34 @@ namespace SharpScript.Demo
             var variableAddResult = await engine.EvaluateAsync<int>("Globals.X + Globals.Y");
             TestUtil.WriteResult(TestUtil.Match(engine.Globals.X + engine.Globals.Y, variableAddResult));
 
+            Console.Write("Testing precompiled script basic arithmetic...");
+            var precompiledAddScript = engine.CompileScript("1 + 2");
+            var precompiledAddResult = await precompiledAddScript.RunAsync<int>();
+            TestUtil.WriteResult(TestUtil.Match(3, precompiledAddResult));
+
             Console.WriteLine("Completed Scripting Engine tests");
 
             Console.Write("Testing Sandboxing...");
 
             var securityParams = new SandboxSecurityParameters();
 
-            
-            securityParams.UseZoneSecurity = true; //This is relatively weak
+            //securityParams.UseZoneSecurity = true; //This is very weak
 
             securityParams.AllowScripting();
 
             var scriptSandbox = new ScriptSandbox(securityParams, Guid.NewGuid().ToString("N"));
             Console.WriteLine("Sandbox Created.");
 
+            Console.Write("Basic arithmetic precompiled script in sandbox...");
+            var sandboxedPrecompileAddScript = scriptSandbox.SandboxedEngine.CompileScript("1 + 2");
+            var sandboxedPrecompileAddScriptResult = sandboxedPrecompileAddScript.RunSync<int>();
+            TestUtil.WriteResult(TestUtil.Match(3, sandboxedPrecompileAddScriptResult));
+
+            /*
             Console.Write("Basic arithmetic in sandbox...");
             var sandboxedAddResult = scriptSandbox.SandboxedEngine.EvaluateSync<int>("1 + 2");
-            TestUtil.WriteResult(TestUtil.Match(3, variableAddResult));
+            TestUtil.WriteResult(TestUtil.Match(3, sandboxedAddResult));
+            */
 
             Console.WriteLine("All tests completed");
             Console.ReadLine();

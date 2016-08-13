@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.Scripting;
+using System.Threading.Tasks;
 
 namespace SharpScript
 {
@@ -14,6 +15,30 @@ namespace SharpScript
         {
             this._compiledRoslynScript = compiledScript;
             Engine = hostEngine;
+        }
+
+        public void RunSync()
+        {
+            var task = RunAsync();
+            task.Wait();
+        }
+
+        public T RunSync<T>()
+        {
+            var task = RunAsync<T>();
+            task.Wait();
+            return task.Result;
+        }
+
+        public async Task RunAsync()
+        {
+            var result = await _compiledRoslynScript.RunAsync(Engine.Globals);
+        }
+
+        public async Task<T> RunAsync<T>()
+        {
+            var result = await _compiledRoslynScript.RunAsync(Engine.Globals);
+            return (T)result.ReturnValue;
         }
 
         //

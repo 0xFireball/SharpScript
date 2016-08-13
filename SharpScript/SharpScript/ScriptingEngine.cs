@@ -66,7 +66,7 @@ namespace SharpScript
         }
 
         public T EvaluateSync<T>(string expression)
-        {
+        {            
             var task = EvaluateAsync<T>(expression);
             task.Wait();
             return task.Result;
@@ -74,7 +74,7 @@ namespace SharpScript
 
         public CompiledScript CompileScript(string scriptCode)
         {
-            var compiledScript = CSharpScript.Create<object>(scriptCode, _roslynScriptOptions);
+            var compiledScript = CSharpScript.Create<object>(scriptCode, _roslynScriptOptions, Globals.GetType());
             return new CompiledScript(compiledScript, this);
         }
 

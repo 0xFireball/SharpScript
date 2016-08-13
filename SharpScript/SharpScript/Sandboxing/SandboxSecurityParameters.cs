@@ -90,8 +90,11 @@ namespace SharpScript.Sandboxing
             AvailableAssemblies = AvailableAssemblies.Distinct().ToList();
             FullTrustAssemblies = currentTrustedAsms.Distinct().ToArray();
 
+            //Grant required permissions
+
             //Allow execution
             AppDomainPermissions.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
+            
         }
     }
 }

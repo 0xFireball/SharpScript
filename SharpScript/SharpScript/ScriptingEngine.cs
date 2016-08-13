@@ -65,6 +65,13 @@ namespace SharpScript
             return await CSharpScript.EvaluateAsync<T>(expression, _roslynScriptOptions, _roslynScriptGlobals);
         }
 
+        public T EvaluateSync<T>(string expression)
+        {
+            var task = EvaluateAsync<T>(expression);
+            task.Wait();
+            return task.Result;
+        }
+
         public CompiledScript CompileScript(string scriptCode)
         {
             var compiledScript = CSharpScript.Create<object>(scriptCode, _roslynScriptOptions);

@@ -4,31 +4,39 @@ namespace SharpScript.Sandboxing
 {
     public sealed class SandboxedCommand<T> : IDisposable where T : MarshalByRefObject
     {
-        private AppDomain appDomain;
-        private T value;
+        private AppDomain _sandboxedAppDomain;
+        private T _value;
 
-        public SandboxedCommand(AppDomain appDomain)
+        public SandboxedCommand(AppDomain sandboxedAppDomain)
         {
-            this.appDomain = appDomain;
+            _sandboxedAppDomain = sandboxedAppDomain;
+
             Type type = typeof(T);
+
+            //_value = (T)sandboxedAppDomain.CreateInstanceAndUnwrap(type.Assembly.FullName, type.FullName);
+
+            _value = (T)Activator.CreateInstance(sandboxedAppDomain, type.Assembly.FullName, type.FullName).Unwrap();
+            
+            /*
             var handle = Activator.CreateInstanceFrom(
-                appDomain,
+                _sandboxedAppDomain,
                 type.Assembly.ManifestModule.FullyQualifiedName,
                 type.FullName);
-            this.value = (T)handle.Unwrap();
+            _value = (T)handle.Unwrap();
+            */            
         }
 
         public T Value
         {
-            get { return this.value; }
+            get { return _value; }
         }
 
         public void Dispose()
         {
-            if (this.appDomain != null)
+            if (_sandboxedAppDomain != null)
             {
-                AppDomain.Unload(this.appDomain);
-                this.appDomain = null;
+                AppDomain.Unload(_sandboxedAppDomain);
+                _sandboxedAppDomain = null;
             }
         }
     }

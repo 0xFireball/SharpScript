@@ -24,10 +24,9 @@ namespace SharpScript.Sandboxing
             {
                 SandboxDomain.Load(availableAssembly.FullName);
             }
-            using (var isolated = new SandboxedCommand<ScriptingEngine>(SandboxDomain))
-            {
-                SandboxedEngine = isolated.Value;
-            }
+
+            var isolated = new SandboxedCommand<ScriptingEngine>(SandboxDomain);
+            SandboxedEngine = isolated.Value;
         }
 
         private AppDomain CreateSandboxedAppDomain(SandboxSecurityParameters securityParameters, string sandboxName)

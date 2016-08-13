@@ -1,6 +1,5 @@
 ﻿using SharpScript.Sandboxing;
 using System;
-using System.Security.Permissions;
 
 namespace SharpScript.Demo
 {
@@ -30,16 +29,18 @@ namespace SharpScript.Demo
             Console.Write("Testing Sandboxing...");
 
             var securityParams = new SandboxSecurityParameters();
-            securityParams.AllowScripting();
 
+            
+            securityParams.UseZoneSecurity = true; //This is relatively weak
+
+            securityParams.AllowScripting();
 
             var scriptSandbox = new ScriptSandbox(securityParams, Guid.NewGuid().ToString("N"));
             Console.WriteLine("Sandbox Created.");
 
             Console.Write("Basic arithmetic in sandbox...");
-            var sandboxedAddResult = scriptSandbox.SandboxedEngine.EvaluateAsync<int>("1 + 2");
+            var sandboxedAddResult = scriptSandbox.SandboxedEngine.EvaluateSync<int>("1 + 2");
             TestUtil.WriteResult(TestUtil.Match(3, variableAddResult));
-
 
             Console.WriteLine("All tests completed");
             Console.ReadLine();

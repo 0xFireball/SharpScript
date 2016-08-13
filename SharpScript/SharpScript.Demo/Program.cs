@@ -32,10 +32,14 @@ namespace SharpScript.Demo
             var securityParams = new SandboxSecurityParameters();
             securityParams.AllowScripting();
 
-            var scriptSandbox = new ScriptSandbox(securityParams, Guid.NewGuid().ToString("N"));
-            var sandboxedAddResult = scriptSandbox.SandboxedEngine.EvaluateAsync<int>("1 + 2");
 
-            
+            var scriptSandbox = new ScriptSandbox(securityParams, Guid.NewGuid().ToString("N"));
+            Console.WriteLine("Sandbox Created.");
+
+            Console.Write("Basic arithmetic in sandbox...");
+            var sandboxedAddResult = scriptSandbox.SandboxedEngine.EvaluateAsync<int>("1 + 2");
+            TestUtil.WriteResult(TestUtil.Match(3, variableAddResult));
+
 
             Console.WriteLine("All tests completed");
             Console.ReadLine();

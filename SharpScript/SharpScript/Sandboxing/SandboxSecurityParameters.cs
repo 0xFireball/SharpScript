@@ -36,6 +36,7 @@ namespace SharpScript.Sandboxing
             var systemCore = typeof(System.Linq.Enumerable).Assembly;
             var systemCollectionsImmutable = typeof(System.Collections.Immutable.ImmutableArray).Assembly;
             var systemNetHttp = typeof(System.Net.Http.HttpClient).Assembly;
+            var systemReflectionMetadata = typeof(System.Reflection.Metadata.AssemblyDefinition).Assembly;
             //var systemRuntimeSerialization = typeof(System.Runtime.Serialization.DataContractSerializer).Assembly;
             var systemXml = typeof(System.Xml.XmlDocument).Assembly;
             var systemXmlLinq = typeof(System.Xml.Linq.XDocument).Assembly;
@@ -51,6 +52,7 @@ namespace SharpScript.Sandboxing
                 systemCore,
                 systemCollectionsImmutable,
                 systemNetHttp,
+                systemReflectionMetadata,
                 //systemRuntimeSerialization,
                 systemXml,
                 systemXmlLinq,

@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using System;
 using System.Collections.Immutable;
 using System.Dynamic;
 using System.Reflection;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SharpScript
 {
-    public class ScriptingEngine
+    public class ScriptingEngine : MarshalByRefObject
     {
         public ScriptingEngine() : this(new SharpScriptOptions())
         {

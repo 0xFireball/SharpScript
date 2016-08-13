@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.CodeAnalysis.Scripting;
 
 namespace SharpScript
 {
@@ -11,6 +7,18 @@ namespace SharpScript
     /// </summary>
     public class CompiledScript
     {
+        private Script<object> _compiledRoslynScript;
+        public ScriptingEngine Engine { get; }
 
+        public CompiledScript(Script<object> compiledScript, ScriptingEngine hostEngine)
+        {
+            this._compiledRoslynScript = compiledScript;
+            Engine = hostEngine;
+        }
+
+        //
+        // Summary:
+        //     The source code of the script.
+        public string Code => _compiledRoslynScript.Code;
     }
 }

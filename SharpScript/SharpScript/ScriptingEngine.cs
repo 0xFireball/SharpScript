@@ -27,21 +27,33 @@ namespace SharpScript
                 .AddImports(EngineOptions.Imports);
         }
 
-        public async Task<bool> RunAsync(string expression)
+        /// <summary>
+        /// Run the script, preserving the state of the engine after execution
+        /// </summary>
+        /// <param name="scriptCode"></param>
+        /// <returns></returns>
+        public async Task<bool> RunAsync<T>(string scriptCode)
         {
-            var afterExecutionState = await EngineState.ContinueWithAsync(expression, _roslynScriptOptions);
+            var afterExecutionState = await EngineState.ContinueWithAsync<T>(scriptCode, _roslynScriptOptions);
+            EngineState = afterExecutionState;
             return true;
         }
 
         /// <summary>
-        /// Statelessly evaluates the code and returns a result. To preserve state, use RunAsync instead.
+        /// Statelessly (state is not changed) evaluates the code and returns a result. To preserve state, use RunAsync instead.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public async Task<T> EvaluateStatelessAsync<T>(string expression)
+        public async Task<T> EvaluateAsync<T>(string expression)
         {
             return await CSharpScript.EvaluateAsync<T>(expression, _roslynScriptOptions, Globals);
+        }
+
+        public CompiledScript CompileScript(string scriptCode)
+        {
+            var compiledScript = CSharpScript.Create<object>(scriptCode, _roslynScriptOptions);
+            return new CompiledScript(compiledScript, this);
         }
 
         /*

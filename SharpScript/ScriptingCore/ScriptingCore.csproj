@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26D65070-0B9B-4788-9A00-518A34AF073C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ScriptingCore</RootNamespace>
+    <AssemblyName>ScriptingCore</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <EmbeddedResource Include="ScriptingResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CompilationErrorException.cs" />
+    <Compile Include="Hosting\AssemblyLoader\AssemblyAndLocation.cs" />
+    <Compile Include="Hosting\AssemblyLoader\AssemblyLoaderImpl.cs" />
+    <Compile Include="Hosting\AssemblyLoader\AssemblyLoadResult.cs" />
+    <Compile Include="Hosting\AssemblyLoader\CoreAssemblyLoaderImpl.cs" />
+    <Compile Include="Hosting\AssemblyLoader\DesktopAssemblyLoaderImpl.cs" />
+    <Compile Include="Hosting\AssemblyLoader\InteractiveAssemblyLoader.cs" />
+    <Compile Include="Hosting\AssemblyLoader\InteractiveAssemblyLoaderException.cs" />
+    <Compile Include="Hosting\AssemblyLoader\MetadataShadowCopy.cs" />
+    <Compile Include="Hosting\AssemblyLoader\MetadataShadowCopyProvider.cs" />
+    <Compile Include="Hosting\AssemblyLoader\ShadowCopy.cs" />
+    <Compile Include="Hosting\CommandLine\CommandLineHelpers.cs" />
+    <Compile Include="Hosting\CommandLine\CommandLineRunner.cs" />
+    <Compile Include="Hosting\CommandLine\CommandLineScriptGlobals.cs" />
+    <Compile Include="Hosting\CommandLine\ConsoleIO.cs" />
+    <Compile Include="Hosting\CommandLine\NotImplementedAnalyzerLoader.cs" />
+    <Compile Include="Hosting\CommonMemberFilter.cs" />
+    <Compile Include="Hosting\InteractiveScriptGlobals.cs" />
+    <Compile Include="Hosting\MemberFilter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.Builder.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.BuilderOptions.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.Visitor.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.Visitor.FormattedMember.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonPrimitiveFormatter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonPrimitiveFormatterOptions.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonTypeNameFormatter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonTypeNameFormatterOptions.cs" />
+    <Compile Include="Hosting\ObjectFormatter\MemberDisplayFormat.cs" />
+    <Compile Include="Hosting\ObjectFormatter\ObjectFormatter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\ObjectFormatterHelpers.cs" />
+    <Compile Include="Hosting\PrintOptions.cs" />
+    <Compile Include="Hosting\Resolvers\NuGetPackageResolver.cs" />
+    <Compile Include="Hosting\Resolvers\RuntimeMetadataReferenceResolver.cs" />
+    <Compile Include="Hosting\SearchPaths.cs" />
+    <Compile Include="Hosting\SynchronizedList.cs" />
+    <Compile Include="MetadataFileReferenceResolver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Script.cs" />
+    <Compile Include="ScriptBuilder.cs" />
+    <Compile Include="ScriptCompiler.cs" />
+    <Compile Include="ScriptExecutionState.cs" />
+    <Compile Include="ScriptingResources.Designer.cs" />
+    <Compile Include="ScriptMetadataResolver.cs" />
+    <Compile Include="ScriptOptions.cs" />
+    <Compile Include="ScriptRunner.cs" />
+    <Compile Include="ScriptSourceResolver.cs" />
+    <Compile Include="ScriptState.cs" />
+    <Compile Include="ScriptVariable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

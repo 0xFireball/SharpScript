@@ -30,6 +30,8 @@ namespace SharpScript.Demo
             TestUtil.WriteResult(TestUtil.Match(3, precompiledAddResult));
 
             Console.WriteLine("Testing passing objects to script...");
+            engine.Globals.Creature = new Dog();
+            await engine.RunAsync("var creature = Globals.Creature;\n//creature.Bark()");
 
             Console.WriteLine("Completed Scripting Engine tests");
 

@@ -93,7 +93,7 @@ namespace SharpScript
             return await CSharpScript.EvaluateAsync<T>(expression);
         }
         */
-        public dynamic Globals { get; set; } = new ExpandoObject();
+        public dynamic Globals { get; set; } = new Expando();
         public SharpScriptOptions EngineOptions { get; set; }
         public ScriptState EngineState { get; set; }
         public ImmutableArray<Microsoft.CodeAnalysis.Scripting.ScriptVariable> Variables => EngineState.Variables;

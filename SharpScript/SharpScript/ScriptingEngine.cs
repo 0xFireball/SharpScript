@@ -47,11 +47,10 @@ namespace SharpScript
         /// </summary>
         /// <param name="scriptCode"></param>
         /// <returns></returns>
-        public async Task<bool> RunAsync<T>(string scriptCode)
+        public async Task RunAsync(string scriptCode)
         {
-            var afterExecutionState = await EngineState.ContinueWithAsync<T>(scriptCode, _roslynScriptOptions);
+            var afterExecutionState = await EngineState.ContinueWithAsync<object>(scriptCode, _roslynScriptOptions);
             EngineState = afterExecutionState;
-            return true;
         }
 
         /// <summary>

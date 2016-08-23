@@ -29,6 +29,8 @@ namespace SharpScript.Demo
             var precompiledAddResult = await precompiledAddScript.RunAsync<int>();
             TestUtil.WriteResult(TestUtil.Match(3, precompiledAddResult));
 
+            Console.WriteLine("Testing passing objects to script...");
+
             Console.WriteLine("Completed Scripting Engine tests");
 
             Console.Write("Testing Sandboxing...");

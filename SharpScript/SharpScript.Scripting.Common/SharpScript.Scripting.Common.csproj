@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{72EDEE4B-6A5F-4F7A-B536-0F35FEEFAB02}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{F7BA6D9E-0B2F-4C4B-99B1-5D87BD97CDE6}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SharpScript.Demo</RootNamespace>
-    <AssemblyName>SharpScript.Demo</AssemblyName>
+    <RootNamespace>SharpScript.Scripting.Common</RootNamespace>
+    <AssemblyName>SharpScript.Scripting.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -130,19 +127,65 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="CompilationErrorException.cs" />
+    <Compile Include="Hosting\AssemblyLoader\AssemblyAndLocation.cs" />
+    <Compile Include="Hosting\AssemblyLoader\AssemblyLoaderImpl.cs" />
+    <Compile Include="Hosting\AssemblyLoader\AssemblyLoadResult.cs" />
+    <Compile Include="Hosting\AssemblyLoader\CoreAssemblyLoaderImpl.cs" />
+    <Compile Include="Hosting\AssemblyLoader\DesktopAssemblyLoaderImpl.cs" />
+    <Compile Include="Hosting\AssemblyLoader\InteractiveAssemblyLoader.cs" />
+    <Compile Include="Hosting\AssemblyLoader\InteractiveAssemblyLoaderException.cs" />
+    <Compile Include="Hosting\AssemblyLoader\MetadataShadowCopy.cs" />
+    <Compile Include="Hosting\AssemblyLoader\MetadataShadowCopyProvider.cs" />
+    <Compile Include="Hosting\AssemblyLoader\ShadowCopy.cs" />
+    <Compile Include="Hosting\CommandLine\CommandLineHelpers.cs" />
+    <Compile Include="Hosting\CommandLine\CommandLineRunner.cs" />
+    <Compile Include="Hosting\CommandLine\CommandLineScriptGlobals.cs" />
+    <Compile Include="Hosting\CommandLine\ConsoleIO.cs" />
+    <Compile Include="Hosting\CommandLine\NotImplementedAnalyzerLoader.cs" />
+    <Compile Include="Hosting\CommonMemberFilter.cs" />
+    <Compile Include="Hosting\InteractiveScriptGlobals.cs" />
+    <Compile Include="Hosting\MemberFilter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.Builder.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.BuilderOptions.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.Visitor.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonObjectFormatter.Visitor.FormattedMember.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonPrimitiveFormatter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonPrimitiveFormatterOptions.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonTypeNameFormatter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\CommonTypeNameFormatterOptions.cs" />
+    <Compile Include="Hosting\ObjectFormatter\MemberDisplayFormat.cs" />
+    <Compile Include="Hosting\ObjectFormatter\ObjectFormatter.cs" />
+    <Compile Include="Hosting\ObjectFormatter\ObjectFormatterHelpers.cs" />
+    <Compile Include="Hosting\PrintOptions.cs" />
+    <Compile Include="Hosting\Resolvers\NuGetPackageResolver.cs" />
+    <Compile Include="Hosting\Resolvers\RuntimeMetadataReferenceResolver.cs" />
+    <Compile Include="Hosting\SearchPaths.cs" />
+    <Compile Include="Hosting\SynchronizedList.cs" />
+    <Compile Include="MetadataFileReferenceResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestUtil.cs" />
+    <Compile Include="Script.cs" />
+    <Compile Include="ScriptBuilder.cs" />
+    <Compile Include="ScriptCompiler.cs" />
+    <Compile Include="ScriptExecutionState.cs" />
+    <Compile Include="ScriptingResources.Designer.cs" />
+    <Compile Include="ScriptMetadataResolver.cs" />
+    <Compile Include="ScriptOptions.cs" />
+    <Compile Include="ScriptRunner.cs" />
+    <Compile Include="ScriptSourceResolver.cs" />
+    <Compile Include="ScriptState.cs" />
+    <Compile Include="ScriptVariable.cs" />
+    <Compile Include="Utilities\ConsoleShims.cs" />
+    <Compile Include="Utilities\IListExtensions.cs" />
+    <Compile Include="Utilities\ParameterValidationHelpers.cs" />
+    <Compile Include="Utilities\TaskExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <EmbeddedResource Include="ScriptingResources.resx" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SharpScript\SharpScript.csproj">
-      <Project>{0c09fccd-9d41-42a4-80c9-d9ca49607471}</Project>
-      <Name>SharpScript</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

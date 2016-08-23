@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpScript.Demo", "SharpSc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RoslynMod", "RoslynMod", "{FDFD7324-9190-4211-A9B9-C63E055EEA30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptingCore", "ScriptingCore\ScriptingCore.csproj", "{26D65070-0B9B-4788-9A00-518A34AF073C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpScript.CSharp", "SharpScript.CSharp\SharpScript.CSharp.csproj", "{531F60A2-582D-47CA-A003-050AAE4B1F55}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,20 +23,8 @@ Global
 		{72EDEE4B-6A5F-4F7A-B536-0F35FEEFAB02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72EDEE4B-6A5F-4F7A-B536-0F35FEEFAB02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72EDEE4B-6A5F-4F7A-B536-0F35FEEFAB02}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26D65070-0B9B-4788-9A00-518A34AF073C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26D65070-0B9B-4788-9A00-518A34AF073C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26D65070-0B9B-4788-9A00-518A34AF073C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26D65070-0B9B-4788-9A00-518A34AF073C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{531F60A2-582D-47CA-A003-050AAE4B1F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{531F60A2-582D-47CA-A003-050AAE4B1F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{531F60A2-582D-47CA-A003-050AAE4B1F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{531F60A2-582D-47CA-A003-050AAE4B1F55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{26D65070-0B9B-4788-9A00-518A34AF073C} = {FDFD7324-9190-4211-A9B9-C63E055EEA30}
-		{531F60A2-582D-47CA-A003-050AAE4B1F55} = {FDFD7324-9190-4211-A9B9-C63E055EEA30}
 	EndGlobalSection
 EndGlobal

@@ -135,6 +135,7 @@
   <ItemGroup>
     <Compile Include="CompiledScript.cs" />
     <Compile Include="Expando.cs" />
+    <Compile Include="ExpandoTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyBag.cs" />
     <Compile Include="Sandboxing\SandboxedCommand.cs" />

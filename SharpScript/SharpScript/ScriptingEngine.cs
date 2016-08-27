@@ -29,7 +29,7 @@ namespace SharpScript
 
             if (EngineOptions.PassEngineReference)
             {
-                Globals.HostEngine = this;
+                Globals["HostEngine"] = this;
             }
         }
 
@@ -93,12 +93,12 @@ namespace SharpScript
             return await CSharpScript.EvaluateAsync<T>(expression);
         }
         */
-        public dynamic Globals { get; set; } = new Expando();
+        public ExpandoTable Globals { get; set; } = new ExpandoTable();
         public SharpScriptOptions EngineOptions { get; set; }
         public ScriptState EngineState { get; set; }
         public ImmutableArray<Microsoft.CodeAnalysis.Scripting.ScriptVariable> Variables => EngineState.Variables;
 
         private ScriptOptions _roslynScriptOptions;
-        private ScriptGlobals _roslynScriptGlobals => new ScriptGlobals() { Globals = Globals };
+        private ScriptGlobals _roslynScriptGlobals => new ScriptGlobals { Globals = Globals };
     }
 }

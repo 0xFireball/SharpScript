@@ -19,10 +19,10 @@ namespace SharpScript.Demo
             TestUtil.WriteResult(TestUtil.Match(3, addResult));
 
             Console.Write("Testing variables...");
-            engine.Globals.X = 1;
-            engine.Globals.Y = 2;
-            var variableAddResult = await engine.EvaluateAsync<int>("Globals.X + Globals.Y");
-            TestUtil.WriteResult(TestUtil.Match(engine.Globals.X + engine.Globals.Y, variableAddResult));
+            engine.Globals["X"] = 1;
+            engine.Globals["Y"] = 2;
+            var variableAddResult = await engine.EvaluateAsync<int>("Globals[\"X\"] + Globals[\"Y\"]");
+            TestUtil.WriteResult(TestUtil.Match(engine.Globals["X"] + engine.Globals["Y"], variableAddResult));
 
             Console.Write("Testing precompiled script basic arithmetic...");
             var precompiledAddScript = engine.CompileScript("1 + 2");
@@ -30,8 +30,8 @@ namespace SharpScript.Demo
             TestUtil.WriteResult(TestUtil.Match(3, precompiledAddResult));
 
             Console.WriteLine("Testing passing objects to script...");
-            engine.Globals.Creature = new Dog();
-            await engine.RunAsync("var creature = Globals.Creature;\n//creature.Bark()");
+            engine.Globals["Creature"] = new Dog();
+            await engine.RunAsync("Globals[\"Creature\"].Bark()");
 
             Console.WriteLine("Completed Scripting Engine tests");
 

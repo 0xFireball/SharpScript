@@ -2,6 +2,6 @@
 {
     public class ScriptGlobals
     {
-        public dynamic Globals { get; set; }
+        public ExpandoTable Globals { get; set; }
     }
 }
